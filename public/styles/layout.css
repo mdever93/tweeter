@@ -25,6 +25,8 @@ body {
 }
 
 main {
+  position: relative;
+  top: 520px;
   background-color: inherit;
   width: 90%;
   display: flex;
