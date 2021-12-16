@@ -74,6 +74,17 @@ $(() => {
 
     return $tweet;
   }
+
+  const $form = $('#new-tweet-form');
+
+  $form.submit(function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    $.post('/tweets', serializedData, (response) => {
+      console.log(response);
+    })
+  })
+
   renderTweets(data);
 
 })
