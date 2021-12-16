@@ -83,6 +83,8 @@ $(() => {
     const serializedData = $(this).serialize();
     $.post('/tweets', serializedData, (response) => {
       console.log(response);
+      $('textarea').val('');
+      loadTweets();
     })
   })
 
