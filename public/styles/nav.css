@@ -14,16 +14,13 @@ nav {
   z-index: 1;
   font-size: 18px;
 }
-
 .fa-angles-down {
   color: red;
   align-self: center;
 }
-
 #logo {
   font-family: 'Bungee', sans-serif;
 }
-
 .newTweet {
   display: flex;
   flex-direction: column;

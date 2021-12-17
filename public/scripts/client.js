@@ -6,14 +6,14 @@
 
 $(() => {
   $('#error').hide();
-//prevents XSS
-  const escape = function (str) {
+  //prevents XSS
+  const escape = function(str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
-//sends a get request to /tweets
-//receives tweets data and sends it to renderTweets
+  //sends a get request to /tweets
+  //receives tweets data and sends it to renderTweets
   const loadTweets = () => {
     $.ajax({
       url: '/tweets',
@@ -26,21 +26,21 @@ $(() => {
         console.log(`error: ${err}`);
       }
 
-    })
-  }
+    });
+  };
   loadTweets();
 
   //loops through array of objects containing tweet data
   //sends data to createTweetElement and recieves elements
   //prepends tweets to the tweets container to be displayed
   const renderTweets = (tweets) => {
-    const $tweetsContainer = $('#tweets-container')
+    const $tweetsContainer = $('#tweets-container');
     $tweetsContainer.empty();
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $tweetsContainer.prepend($tweet);
     }
-  }
+  };
 
   //creates the elements that will be displayed in the tweets
   const createTweetElement = (tweet) => {
@@ -76,20 +76,22 @@ $(() => {
 `;
 
     return $tweet;
-  }
+  };
 
-// handles data from the new tweet form
-// checks that text in textarea is valid
-// shows error if necassary
+  // handles data from the new tweet form
+  // checks that text in textarea is valid
+  // shows error if necassary
   const $form = $('#new-tweet-form');
-  $form.submit(function (event) {
+  $form.submit(function(event) {
     event.preventDefault();
-    let input = $(this).children('textarea').val()
+    let input = $(this).children('textarea').val();
     $('#error').slideUp(300, () => {
-      $('#error').empty()
+      $('#error').empty();
       if (input === '' || input === null) {
         $('#error').append('<p> Cannot send empty tweet');
-        setTimeout(() => { $('#error').slideDown(300); }, 300)
+        setTimeout(() => {
+          $('#error').slideDown(300); 
+        }, 300);
 
         return;
       } else if (input.length > 140) {
@@ -98,15 +100,15 @@ $(() => {
         return;
       }
 
-//sends POST request to /tweets
+      //sends POST request to /tweets
       const serializedData = $(this).serialize();
       $.post('/tweets', serializedData, (response) => {
         $('textarea').val('');
-        $('.counter').val(140)
+        $('.counter').val(140);
         loadTweets();
-      })
-    })
-  })
+      });
+    });
+  });
 
 
-})
+});

@@ -43,12 +43,10 @@ main {
      justify-content: space-evenly;
      padding-top: 120px;
    }
-
    nav {
      background-color: #4056A1;
      height: 120px;
    }
-
    header.main {
     width: 30vw;
     height: 30vw;
@@ -57,7 +55,6 @@ main {
     position: sticky;
     top: calc(120px + 3.3vw);     
    }
-
    main {
      width: 60vw;
      margin-top: 3.3vw;
