@@ -35,17 +35,10 @@ article.tweet div {
   height: auto;
   display: flex;
   align-items: center;
-  /* word-wrap: break-word; */
-  /* white-space: pre-wrap; */
-  /* word-break: break-word; */
-    /* border-bottom: solid #545149 2px; */
 }
 article.tweet header div {
 
   height: 100%;
-  /* font-size: 12; */
-  /* width: auto; */
-  /* padding: 10px; */
   margin: 0.5em;
 }
 article.tweet header div img {
@@ -54,7 +47,6 @@ article.tweet header div img {
   margin: 0.5em;
 }
 article.tweet .content {
-  /* padding: 2px; */
   margin: 0.5em;
   word-wrap: break-word;
   word-break: break-word;
@@ -64,8 +56,6 @@ article.tweet footer div {
   height: 100%;
   border: 0;
   font-size: 16px;
-  /* padding: 10px; */
-  /* display: flex; */
 }
 article.tweet footer div i {
   margin: 5px;

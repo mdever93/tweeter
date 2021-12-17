@@ -1,7 +1,5 @@
 .new-tweet {
   width: 100%;
-  /* display: flex;
-  flex-direction: column; */
 }
 .new-tweet h2{
   margin-top: 0;
@@ -30,14 +28,12 @@
   border-bottom: solid #545149 2px;
   margin-bottom: 5px;
   outline-width: 0;
-  /* font-size: 16px; */
   resize: none;
 }
 .new-tweet form div{
   display: flex;
   justify-content: space-between;
   font-family: 'Bungee', sans-serif;
-  /* font-size: calc(48px - (3vw - 3vh)); */
   font-size: 32px;
 }
 .new-tweet button{

@@ -25,8 +25,6 @@ body {
 }
 
 main {
-  /* position: relative; */
-  /* top: 520px; */
   background-color: inherit;
   width: 95vw;
   display: flex;
@@ -54,13 +52,10 @@ main {
    header.main {
     width: 30vw;
     height: 30vw;
-    /* margin-top: 3.3vw; */
     padding: 1em;
     position: -webkit-sticky;
     position: sticky;
-    top: calc(120px + 3.3vw);
-        /* padding-top: 0; */
-     
+    top: calc(120px + 3.3vw);     
    }
 
    main {

@@ -6,13 +6,14 @@
 
 $(() => {
   $('#error').hide();
-
+//prevents XSS
   const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
-
+//sends a get request to /tweets
+//receives tweets data and sends it to renderTweets
   const loadTweets = () => {
     $.ajax({
       url: '/tweets',
@@ -29,6 +30,9 @@ $(() => {
   }
   loadTweets();
 
+  //loops through array of objects containing tweet data
+  //sends data to createTweetElement and recieves elements
+  //prepends tweets to the tweets container to be displayed
   const renderTweets = (tweets) => {
     const $tweetsContainer = $('#tweets-container')
     $tweetsContainer.empty();
@@ -38,8 +42,8 @@ $(() => {
     }
   }
 
+  //creates the elements that will be displayed in the tweets
   const createTweetElement = (tweet) => {
-    // const $tweet = $(`<article class="tweet">Hello world</article>`);
     const $avatar = `<img src=${escape(tweet.user.avatars)}>`;
     const $name = `<p>${escape(tweet.user.name)}`;
     const $handle = `<p>${escape(tweet.user.handle)}`;
@@ -74,13 +78,13 @@ $(() => {
     return $tweet;
   }
 
+// handles data from the new tweet form
+// checks that text in textarea is valid
+// shows error if necassary
   const $form = $('#new-tweet-form');
-
   $form.submit(function (event) {
     event.preventDefault();
-    // console.log(event);
     let input = $(this).children('textarea').val()
-    console.log(input);
     $('#error').slideUp(300, () => {
       $('#error').empty()
       if (input === '' || input === null) {
@@ -88,19 +92,15 @@ $(() => {
         setTimeout(() => { $('#error').slideDown(300); }, 300)
 
         return;
-        // return alert('Cannot send empty tweet');
       } else if (input.length > 140) {
         $('#error').append('<p> Your tweet is longer than 140 characters');
         $('#error').slideDown();
         return;
-        // return alert('Your tweet is longer than 140 characters')
       }
 
-
-      console.log(this);
+//sends POST request to /tweets
       const serializedData = $(this).serialize();
       $.post('/tweets', serializedData, (response) => {
-        console.log(response);
         $('textarea').val('');
         $('.counter').val(140)
         loadTweets();
@@ -108,6 +108,5 @@ $(() => {
     })
   })
 
-  // renderTweets(data);
 
 })
