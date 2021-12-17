@@ -25,10 +25,10 @@ body {
 }
 
 main {
-  position: relative;
-  top: 520px;
+  /* position: relative; */
+  /* top: 520px; */
   background-color: inherit;
-  width: 90%;
+  width: 95vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,3 +37,34 @@ main {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ @media only screen and (min-width: 1024px) {
+   body {
+     flex-direction: row;
+     align-items: flex-start;
+     justify-content: space-evenly;
+     padding-top: 120px;
+   }
+
+   nav {
+     background-color: #4056A1;
+     height: 120px;
+   }
+
+   header.main {
+    width: 30vw;
+    height: 30vw;
+    /* margin-top: 3.3vw; */
+    padding: 1em;
+    position: -webkit-sticky;
+    position: sticky;
+    top: calc(120px + 3.3vw);
+        /* padding-top: 0; */
+     
+   }
+
+   main {
+     width: 60vw;
+     margin-top: 3.3vw;
+   }
+ }

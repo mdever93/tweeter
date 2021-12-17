@@ -25,7 +25,7 @@ $(document).ready(function() {
     if (textLength > 140) {
       $('.counter').css('color', 'red')
     } else {
-      $('.counter').css('color', 'black')
+      $('.counter').css('color', '#545149')
     }
 
     // console.log(this);

@@ -5,6 +5,14 @@
  */
 
 $(() => {
+  $('#error').hide();
+
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
   const loadTweets = () => {
     $.ajax({
       url: '/tweets',
@@ -32,10 +40,10 @@ $(() => {
 
   const createTweetElement = (tweet) => {
     // const $tweet = $(`<article class="tweet">Hello world</article>`);
-    const $avatar = `<img src=${tweet.user.avatars}>`;
-    const $name = `<p>${tweet.user.name}`;
-    const $handle = `<p>${tweet.user.handle}`;
-    const $content = `<p>${tweet.content.text}`;
+    const $avatar = `<img src=${escape(tweet.user.avatars)}>`;
+    const $name = `<p>${escape(tweet.user.name)}`;
+    const $handle = `<p>${escape(tweet.user.handle)}`;
+    const $content = `<p class= content>${escape(tweet.content.text)}`;
     const $time = timeago.format(tweet.created_at);
     const $tweet = `<article class="tweet">
     <header>
@@ -73,18 +81,30 @@ $(() => {
     // console.log(event);
     let input = $(this).children('textarea').val()
     console.log(input);
-    if (input === '' || input === null) {
-      return alert('Cannot send empty tweet');
-    } else if (input.length > 140) {
-      return alert('Your tweet is longer than 140 characters')
-    }
+    $('#error').slideUp(300, () => {
+      $('#error').empty()
+      if (input === '' || input === null) {
+        $('#error').append('<p> Cannot send empty tweet');
+        setTimeout(() => { $('#error').slideDown(300); }, 300)
 
-    console.log(this);
-    const serializedData = $(this).serialize();
-    $.post('/tweets', serializedData, (response) => {
-      console.log(response);
-      $('textarea').val('');
-      loadTweets();
+        return;
+        // return alert('Cannot send empty tweet');
+      } else if (input.length > 140) {
+        $('#error').append('<p> Your tweet is longer than 140 characters');
+        $('#error').slideDown();
+        return;
+        // return alert('Your tweet is longer than 140 characters')
+      }
+
+
+      console.log(this);
+      const serializedData = $(this).serialize();
+      $.post('/tweets', serializedData, (response) => {
+        console.log(response);
+        $('textarea').val('');
+        $('.counter').val(140)
+        loadTweets();
+      })
     })
   })
 
