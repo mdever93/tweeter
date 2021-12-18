@@ -96,7 +96,10 @@ $(() => {
         return;
       } else if (input.length > 140) {
         $('#error').append('<p> Your tweet is longer than 140 characters');
-        $('#error').slideDown();
+        setTimeout(() => {
+          $('#error').slideDown(300); 
+        }, 300);
+
         return;
       }
 
